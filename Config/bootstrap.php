@@ -70,3 +70,5 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+// Bootstrap Plugin (git@github.com:nodesagency/Platform-Twitter-Bootstrap.git)
+CakePlugin::load('TwitterBootstrap');
