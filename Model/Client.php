@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  * @property Enquiry $Enquiry
  */
 class Client extends AppModel {
+
 /**
  * Validation rules
  *
@@ -174,6 +175,10 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Title' => array(
+			'className' => 'Title',
+			'foreignKey' => 'title_id'
 		)
 	);
 

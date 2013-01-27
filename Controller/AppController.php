@@ -35,4 +35,6 @@ class AppController extends Controller {
 
 	public $components = array('RequestHandler', 'Session');
 
+	public $helpers = array('TwitterBootstrap.BootstrapForm');
+
 }

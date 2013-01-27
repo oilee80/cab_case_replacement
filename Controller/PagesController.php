@@ -66,6 +66,12 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title = Inflector::humanize($path[$count - 1]);
 		}
+
+		if($page == 'home') {
+			$this->loadModel('Client');
+			$this->set('titles', $this->Client->Title->find('list'));
+		}
+
 		$this->set(compact('page', 'subpage'));
 		$this->set('title_for_layout', $title);
 		$this->render(implode('/', $path));

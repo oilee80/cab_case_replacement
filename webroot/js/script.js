@@ -79,6 +79,7 @@ console.log(data);
 			$client.find('input[name$="[address_line_3]"]').val(ev.data.Address.address_line_3);
 			$client.find('input[name$="[address_line_4]"]').val(ev.data.Address.address_line_4);
 			$client.find('input[name$="[post_code]"]').val(ev.data.Address.post_code);
+			$client.find('input[name$="[flat_name_number]"]').focus();
 		}
 	},
 	enquiries: {

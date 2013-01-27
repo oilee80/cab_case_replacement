@@ -7,7 +7,6 @@ App::uses('AppController', 'Controller');
  */
 class ClientsController extends AppController {
 
-
 /**
  * index method
  *

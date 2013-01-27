@@ -9,29 +9,41 @@
 </div>
 
 <?php
-	echo $this->Form->create('Client', array('id' => 'clients'));
-	echo $this->Form->input('id');
+	echo $this->BootstrapForm->create('Client', array('id' => 'clients'));
+	echo $this->BootstrapForm->input('id');
 
-	echo $this->Form->input('first_name');
-	echo $this->Form->input('last_name');
+echo '<fieldset>';
+echo '<legend>Name</legend>';
+	echo $this->BootstrapForm->input('title', array('empty' => ''));
+	echo $this->BootstrapForm->input('first_name');
+	echo $this->BootstrapForm->input('last_name');
+echo '</fieldset>';
 
-	echo $this->Form->input('flat_name_number');
-	echo $this->Form->input('house_name_number');
+echo '<fieldset>';
+echo '<legend>Address</legend>';
+	$addressArgs = array('label' => false);
 
-	echo $this->Form->input('address_line_1');
-	echo $this->Form->input('address_line_2');
-	echo $this->Form->input('address_line_3');
-	echo $this->Form->input('address_line_4');
-	echo $this->Form->input('post_code');
+	echo $this->BootstrapForm->input('flat_name_number');
+	echo $this->BootstrapForm->input('house_name_number');
 
-	echo $this->Form->button('Find Address', array('type' => false, 'id' => 'FindAddress'));
+	echo $this->BootstrapForm->input('address_line_1', $addressArgs);
+	echo $this->BootstrapForm->input('address_line_2', $addressArgs);
+	echo $this->BootstrapForm->input('address_line_3', $addressArgs);
+	echo $this->BootstrapForm->input('address_line_4', $addressArgs);
+	echo $this->BootstrapForm->input('post_code');
 
-	echo $this->Form->input('phone_1');
-	echo $this->Form->input('phone_2');
-	echo $this->Form->input('email_1');
-	echo $this->Form->input('email_2');
+	echo $this->BootstrapForm->button('Find Address', array('type' => false, 'id' => 'FindAddress'));
+echo '</fieldset>';
 
-	echo $this->Form->end();
+echo '<fieldset>';
+echo '<legend>Contact Details</legend>';
+	echo $this->BootstrapForm->input('phone_1');
+	echo $this->BootstrapForm->input('phone_2');
+	echo $this->BootstrapForm->input('email_1');
+	echo $this->BootstrapForm->input('email_2');
+echo '</fieldset>';
+
+	echo $this->BootstrapForm->end();
 ?>
 
 

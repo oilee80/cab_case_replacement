@@ -8,6 +8,7 @@ App::uses('AppModel', 'Model');
  * @property Spc $Spc
  */
 class Contact extends AppModel {
+
 /**
  * Validation rules
  *
