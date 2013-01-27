@@ -6,6 +6,8 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
+		echo $this->Form->input('flat_name_number');
+		echo $this->Form->input('house_name_number');
 		echo $this->Form->input('address_line_1');
 		echo $this->Form->input('address_line_2');
 		echo $this->Form->input('address_line_3');

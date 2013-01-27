@@ -26,7 +26,23 @@ class AddressesController extends AppController {
  * @return void
 */
 	public function find() {
-		
+		if(!$this->request->is('post') || (empty($this->request->data['Address']['post_code']))) {
+			throw new NotFoundException(__('Invalid Search'));
+		}
+
+		$postcodeSearch = strtr($this->request->data['Address']['post_code'], array(' ', '%'));
+		$args = array(
+			'conditions' => array(
+				'post_code LIKE' => '%' . strtoupper($postcodeSearch) . '%'
+			),
+			'recursive' => -1
+		);
+
+		$Addresses = $this->Address->find('all', $args);
+		$this->set('Addresses', $Addresses);
+		if($this->request->params['ext'] == 'json') {
+			$this->set('_serialize', array('Addresses'));
+		}
 	}
 
 /**
@@ -43,9 +59,9 @@ class AddressesController extends AppController {
 				empty($this->request->data['Address']['import']['error'])
 			){
 				if($this->Address->import($this->request->data['Address']['import']['tmp_name'])) {
-					$this->Session->SetFlash(__('Import Successfull'));
+					$this->Session->setFlash(__('Import Successfull'));
 				} else {
-					$this->Session->SetFlash(__('Error during Import'));
+					$this->Session->setFlash(__('Error during Import'));
 				}
 			} else {
 debug($this->request->data);

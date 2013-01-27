@@ -7,6 +7,30 @@ App::uses('AppController', 'Controller');
  */
 class EnquiriesController extends AppController {
 
+/**
+ *	
+ */
+	public function client_enquiries() {
+		if(!$this->request->is('post')) {
+			throw new NotFoundException(__('Invalid Search'));
+		}
+
+		$args = array(
+			'conditions' => array(
+				'client_id' => $this->request->data['Enquiries']['client_id'];
+			),
+			'fields' = array(
+				'created',
+				'title'
+			),
+			'recursive' => -1
+		);
+		$Enquiries = $this->Enquiry->find('all', $args);
+
+		$this->set('Enquiries', $Enquiries);
+		$this->set('_serialize', array('Enquiries'));
+	}
+
 
 /**
  * index method

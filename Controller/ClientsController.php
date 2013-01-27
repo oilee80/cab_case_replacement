@@ -13,23 +13,9 @@ class ClientsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function admin_index() {
 		$this->Client->recursive = 0;
 		$this->set('clients', $this->paginate());
-	}
-
-/**
- * view method
- *
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		$this->Client->id = $id;
-		if (!$this->Client->exists()) {
-			throw new NotFoundException(__('Invalid client'));
-		}
-		$this->set('client', $this->Client->read(null, $id));
 	}
 
 /**
@@ -47,7 +33,27 @@ class ClientsController extends AppController {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));
 			}
 		}
+		$test = array('key' => 'Some Text');
+		$this->set(compact(array('test')));
+		$this->set('_serialize', array('test'));
 	}
+
+/**
+ * add method
+ *
+ * @return void
+ 
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Client->create();
+			if ($this->Client->save($this->request->data)) {
+				$this->Session->setFlash(__('The client has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));
+			}
+		}
+	}*/
 
 /**
  * edit method
@@ -78,7 +84,7 @@ class ClientsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
