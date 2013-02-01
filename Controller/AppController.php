@@ -35,6 +35,25 @@ class AppController extends Controller {
 
 	public $components = array('RequestHandler', 'Session');
 
-	public $helpers = array('TwitterBootstrap.BootstrapForm');
+	public $helpers = array(
+		'TwitterBootstrap.BootstrapForm',
+		'TwitterBootstrap.BootstrapPaginator',
+		'Paginator',
+		'Html'
+	);
 
+	public $paginate = array(
+		'limit' => 25,
+		'order' => array(
+			'title' => 'asc'
+		)
+	);
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+
+		if(array_key_exists('admin', $this->request->params) && $this->request->params['admin']) {
+			$this->layout = 'admin';
+		}
+	}
 }
