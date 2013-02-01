@@ -1,13 +1,16 @@
-<div id="tasks_roles">
-	<ul id="roles">
-		
-	</ul>
-
-	<ul id="tasks">
-		<li><a id="getTasks">Get Tasks</a></li>
-	</ul>
+<div class="row-fluid">
+<div id="enquiries-tree" class="span2">
+<h4>Enquiry Tree</h4>
+<ul></ul>
 </div>
 
+<div class="span10">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#client-details" data-toggle="tab">Client</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="client-details">
 <?php
 	echo $this->BootstrapForm->create('Client', array('id' => 'clients'));
 	echo $this->BootstrapForm->input('id');
@@ -30,9 +33,9 @@ echo '<legend>Address</legend>';
 	echo $this->BootstrapForm->input('address_line_2', $addressArgs);
 	echo $this->BootstrapForm->input('address_line_3', $addressArgs);
 	echo $this->BootstrapForm->input('address_line_4', $addressArgs);
-	echo $this->BootstrapForm->input('post_code');
+	echo $this->BootstrapForm->input('post_code', array('append' => $this->BootstrapForm->button('Find Address', array('type' => false, 'id' => 'FindAddress'))));
 
-	echo $this->BootstrapForm->button('Find Address', array('type' => false, 'id' => 'FindAddress'));
+	//echo $this->BootstrapForm->button('Find Address', array('type' => false, 'id' => 'FindAddress'));
 echo '</fieldset>';
 
 echo '<fieldset>';
@@ -45,12 +48,10 @@ echo '</fieldset>';
 
 	echo $this->BootstrapForm->end();
 ?>
+		</div>
 
-
-<ul id="enquiries-tree">
-
-</ul>
-
-<div id="enquiries">
-<!--	This will use `section` elements for each of the open enquiries	-->
+		<div id="enquiries">
+		<!--	This will use `section` elements for each of the open enquiries	-->
+		</div>
+	</div>
 </div>

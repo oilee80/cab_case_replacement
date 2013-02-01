@@ -1,21 +1,40 @@
-html {
-	font-family: arial;
-	font-size: 0.75em;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+/*	Start Debug	*/
+body {
+	padding-bottom: 1.5em;
 }
-body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
-	font-size: 1em;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
+.cake-sql-log-wrapper {
+	background: #C88;
+	border: 1px solid #E44;
+	bottom: 0;
+	height: 1.2em;
+	left: 0;
+	opacity: 0.8;
+	padding: 2px 10px;
+	position: fixed;
+	right: 0;
+	z-index: 1050;
 
-#tasks_roles {
-	float: left;
-	width: 25%
+	-moz-transition: height 0.8s;
+	-o-transition: height 0.8s;
+	-webkit-transition: height 0.8s;
+	transition: height 0.8s;
 }
+.cake-sql-log-wrapper:hover {
+	height: 30%;
+	max-height: 30%;
+}
+.cake-sql-log-wrapper .cake-sql-log {
+	background: #C33;
+	border-collapse: separate;
+	border-spacing: 1px;
+	margin: 0 0 3px;
+	width: 100%;
+}
+.cake-sql-log-wrapper .cake-sql-log th,
+.cake-sql-log-wrapper .cake-sql-log td {
+	background: #C88;
+}
+/*	End Debug	*/
 
 .selectable,
 a[href] {
@@ -29,51 +48,24 @@ a[href] {
 	display: none;
 }
 
-
-.modal-wrapper {
-	bottom: 15%;
-	position: fixed;
-	text-align: center;
-	top: 15%;
-	width: 100%;
-}
-.modal {
-	background: #FFF;
-	box-shadow: 1px 1px 5px #999;
-	display: inline-block;
-	height: 100%;
-	max-width: 90%;
-	min-width: 500px;
-	overflow-x: auto;
-	overflow-y: scroll;
-	padding: 10px;
+.modal-header .close {
 	position: relative;
-	text-align: left;
-}
-.close_modal {
-	background: #C33;
-	background: rgba(204, 51, 51, 0.7);
-	box-shadow: 1px 1px 3px #C33;
-	border-radius: 50%;
-	color: transparent;
-	cursor: pointer;
-	position: absolute;
-	right: 3px;
-	top: 3px;
-
-	width: 1.2em;
-	height: 1.2em;
-}
-.close_modal:after {
-	color: #FFF;
-	content: '\00D7';
-	font-size: 1.9em;
-	position: absolute;
-	top: -40%;
-	left: 10%;
+	z-index: 1;
 }
 
 
 label:after {
 	content: ': ';
+}
+
+
+.table tbody tr.error td {
+	background-color: #f2dede;
+}
+
+#admin_tasks ul {
+	margin-left: 0.8em;
+}
+#admin_tasks li {
+	float: none;
 }

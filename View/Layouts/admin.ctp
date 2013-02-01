@@ -58,13 +58,40 @@
 	</header>
 	<?php echo $this->element('actions'); ?>
 	<div class="row-fluid">
-		<div id="tasks_roles" class="span3">
-			<ul id="roles">
-				
-			</ul>
+		<div id="admin_tasks" class="span3">
+			<ul class="nav nav-pills">
+<?php
+	$addClass = ($this->request->params['action'] == 'admin_add') ? 'active' : '';
 
-			<ul id="tasks">
-				<li><a id="getTasks">Get Tasks</a></li>
+	echo $this->Html->tag(
+		'li',
+		$this->Html->link(__('Enquiry Types'), array('controller' => 'EnquiryTypes', 'action' => 'index')),
+		array(
+			'class' => ($this->name == 'EnquiryTypes') ? 'active' : ''
+		)
+	);
+
+	if($this->name == 'EnquiryTypes') {
+		echo '<ul class="nav nav-pills">';
+		echo '<li class="'.$addClass.'">' . $this->Html->link(__('Add'), array('action' => 'add')) . '</li>';
+		echo '</ul>';
+	}
+
+	echo $this->Html->tag(
+		'li',
+		$this->Html->link(__('Addresses'), array('controller' => 'Addresses', 'action' => 'index')),
+		array(
+			'class' => ($this->name == 'Addresses') ? 'active' : ''
+		)
+	);
+
+	if($this->name == 'Addresses') {
+		echo '<ul class="nav nav-pills">';
+		echo '<li class="'.$addClass.'">' . $this->Html->link(__('Add'), array('action' => 'add')) . '</li>';
+		echo '<li>' . $this->Html->link(__('Export'), array('action' => 'export')) . '</li>';
+		echo '</ul>';
+	}
+?>
 			</ul>
 		</div>
 		<div class="span9">
