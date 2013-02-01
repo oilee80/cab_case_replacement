@@ -20,7 +20,20 @@ var app = {
 		}
 	},
 	modal: {
-		open: function(content, extra_classes) {
+		open: function(content, header, extra_classes, footer) {
+			var header = (header) ? '<h3>'+header+'</h3>' : '';
+			var modal = $('<div class="modal hide fade '+extra_classes+'">');
+			modal.append('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+header+'</div>');
+			var modal_body = $('<div class="modal-body" />').append(content);
+			modal.append(modal_body);
+			if(footer) {
+				modal.append(footer);
+			}
+			$(document.body).append(modal);
+			console.log(modal);
+			modal.modal();
+			return modal;
+
 			var modal = $('<div class="modal-wrapper '+extra_classes+'">');
 			var modal_inner = $('<div class="modal" />');
 			modal.append(modal_inner);
@@ -43,10 +56,10 @@ var app = {
 		},
 		display_results: function(data, cb) {
 			var results_table = $('<table class="restults_table" />');
-			var modal = app.modal.open(results_table, 'address_results');
+			var modal = app.modal.open(results_table, 'Address Search Results', 'address_results');
 			var cb2 = function(ev) {
 				cb(ev);
-				modal.remove();
+//				modal.remove();
 			}
 			var result_rows = [];
 			for(var i = 0; i < data.Addresses.length; i++) {
@@ -55,7 +68,7 @@ var app = {
 				row.append('<td>'+address.address_line_1+'</td>');
 				row.append('<td>'+address.address_line_2+'</td>');
 				row.append('<td>'+address.post_code+'</td>');
-				row.addClass('selectable').bind('click', {Address: address}, cb2);
+				row.addClass('selectable').attr('data-dismiss', 'modal').bind('click', {Address: address}, cb2);
 				results_table.append(row);
 			}
 		}
