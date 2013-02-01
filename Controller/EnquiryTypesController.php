@@ -93,4 +93,13 @@ class EnquiryTypesController extends AppController {
 		$this->Session->setFlash(__('Enquiry type was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ */
+	public function admin_index() {
+		$this->EnquiryType->recursive = -1;
+		$enquiryTypes = $this->paginate('EnquiryType');
+
+		$this->set(compact('enquiryTypes'));
+	}
 }
