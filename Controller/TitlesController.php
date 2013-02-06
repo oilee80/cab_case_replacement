@@ -35,9 +35,9 @@ class TitlesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Title->save($this->request->data)) {
-				$this->Session->setFlash(__('The title has been saved.'), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('The title has been saved.'), 'default', array('class' => 'alert-success'));
 			} else {
-				$this->Session->setFlash(__('Error saving title'), 'default', array('class' => 'alert alert-error'));
+				$this->Session->setFlash(__('Error saving title'), 'default', array('class' => 'alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Title->read(null, $id);

@@ -86,9 +86,9 @@ debug($this->request->data);
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Address->save($this->request->data)) {
-				$this->Session->setFlash(__('The address has been saved.'), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('The address has been saved.'), 'default', array('class' => 'alert-success'));
 			} else {
-				$this->Session->setFlash(__('Error saving Address'), 'default', array('class' => 'alert alert-error'));
+				$this->Session->setFlash(__('Error saving Address'), 'default', array('class' => 'alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Address->read(null, $id);
@@ -117,7 +117,7 @@ debug($this->request->data);
  * @return void
  */	public function admin_export() {
 		if(!array_key_exists('ext', $this->request->params) || ($this->request->params['ext'] != 'csv')) {
-			$this->Session->setFlash(__('Incorrect Extension'), 'default', array('class' => 'alert alert-error'));
+			$this->Session->setFlash(__('Incorrect Extension'), 'default', array('class' => 'alert-error'));
 			$this->redirect(array('action' => 'index'));
 		}
 		$addresses = $this->Address->find('all', array('recursive' => -1));
