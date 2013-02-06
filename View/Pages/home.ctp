@@ -14,12 +14,18 @@
 <?php
 	echo $this->BootstrapForm->create('Client', array('id' => 'clients'));
 	echo $this->BootstrapForm->input('id');
+	echo $this->BootstrapForm->input('reference');
 
 echo '<fieldset>';
-echo '<legend>Name</legend>';
-	echo $this->BootstrapForm->input('title', array('empty' => ''));
+echo '<legend>Client</legend>';
+	echo $this->BootstrapForm->input('title', array('empty' => '', 'append' => '<span id="ClientExistingTitle"></span>'));
 	echo $this->BootstrapForm->input('first_name');
-	echo $this->BootstrapForm->input('last_name');
+	echo $this->BootstrapForm->input('last_name',
+		array(
+			'append' => $this->Form->input('Client.annonymous')
+		)
+	);
+	echo $this->BootstrapForm->input('date_of_birth', array('empty' => '', 'default' => '', 'maxYear' => date('Y'), 'minYear' => date('Y') - 100, 'div' => 'control-group date', 'separator' => ' / '));
 echo '</fieldset>';
 
 echo '<fieldset>';
