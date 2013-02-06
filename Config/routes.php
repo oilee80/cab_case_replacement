@@ -26,7 +26,10 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	Router::parseExtensions('json');
+	Router::connect('/admin/', array('controller' => 'pages', 'action' => 'display', 'admin' => true, 'admin'));
+   
+// Make sure CakePHP parses CSV & JSON file requests correctly
+	Router::parseExtensions('csv', 'json');
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
