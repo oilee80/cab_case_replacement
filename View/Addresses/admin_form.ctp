@@ -1,5 +1,6 @@
 <?php
 	echo $this->BootstrapForm->create('Address');
+	echo $this->BootstrapForm->input('id');
 
 	$addrArgs = array('label' => false, 'placeholder' => 'Address Line 1');
 
@@ -23,4 +24,6 @@
 	$addrArgs['placeholder'] = 'Post Code';
 	echo $this->BootstrapForm->input('post_code', $addrArgs);
 	echo '</fieldset>';
+
+	echo $this->BootstrapForm->end('Save');
 ?>
