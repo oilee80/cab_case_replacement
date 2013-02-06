@@ -36,10 +36,15 @@ class AppController extends Controller {
 	public $components = array('RequestHandler', 'Session');
 
 	public $helpers = array(
+// Twitter Plugin Helpers
 		'TwitterBootstrap.BootstrapForm',
 		'TwitterBootstrap.BootstrapPaginator',
+		'TwitterBootstrap.BootstrapSession',
+// Builtin Helpers
 		'Paginator',
-		'Html'
+		'Html',
+		'Form',
+		'Session'
 	);
 
 	public $paginate = array(
