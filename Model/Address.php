@@ -94,7 +94,7 @@ class Address extends AppModel {
 		'post_code' => array(
 			'postal' => array(
 //				'rule' => array('postal', '/\\A\\b[A-Z]{1,2}[0-9][A-Z0-9]? *?[0-9][ABD-HJLNP-UW-Z]{2}\\b\\z/i'),
-				'rule' => array('postal', '/[A-Z]{1,2}[0-9][A-Z0-9]? *?[0-9][A-Z]{2}/i'),
+				'rule' => array('postal', '/^[A-Z]{1,2}[0-9][A-Z0-9]? *?[0-9][A-Z]{2}$/i', 'uk'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

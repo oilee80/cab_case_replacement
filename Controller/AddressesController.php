@@ -27,7 +27,7 @@ class AddressesController extends AppController {
 */
 	public function find() {
 		if(!$this->request->is('post') || (empty($this->request->data['Address']['post_code']))) {
-			throw new NotFoundException(__('Invalid Search'));
+			throw new BadRequestException(__('Invalid Search'));
 		}
 
 		$postcodeSearch = strtr($this->request->data['Address']['post_code'], array(' ', '%'));
@@ -46,7 +46,7 @@ class AddressesController extends AppController {
 	}
 
 /**
- * view method
+ * import method
  *
  * @param string $id
  * @return void
@@ -86,18 +86,19 @@ debug($this->request->data);
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Address->save($this->request->data)) {
-				$this->flash(__('The address has been saved.'), array('action' => 'index'));
+				$this->Session->setFlash(__('The address has been saved.'), 'default', array('class' => 'alert alert-success'));
 			} else {
+				$this->Session->setFlash(__('Error saving Address'), 'default', array('class' => 'alert alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Address->read(null, $id);
 		}
+		$this->render('admin_form');
 	}
 
 /**
- * edit method
+ * add method
  *
- * @param string $id
  * @return void
  */
 	public function admin_add() {
@@ -110,7 +111,15 @@ debug($this->request->data);
 		$this->render('admin_form');
 	}
 
-	public function admin_export() {
+/**
+ * export method
+ *
+ * @return void
+ */	public function admin_export() {
+		if(!array_key_exists('ext', $this->request->params) || ($this->request->params['ext'] != 'csv')) {
+			$this->Session->setFlash(__('Incorrect Extension'), 'default', array('class' => 'alert alert-error'));
+			$this->redirect(array('action' => 'index'));
+		}
 		$addresses = $this->Address->find('all', array('recursive' => -1));
 		$this->set(compact('addresses'));
 	}
