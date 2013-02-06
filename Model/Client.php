@@ -175,7 +175,10 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+		)
+	);
+
+	public $belongsTo = array(
 		'Title' => array(
 			'className' => 'Title',
 			'foreignKey' => 'title_id'

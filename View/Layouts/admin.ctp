@@ -88,13 +88,30 @@
 	if($this->name == 'Addresses') {
 		echo '<ul class="nav nav-pills">';
 		echo '<li class="'.$addClass.'">' . $this->Html->link(__('Add'), array('action' => 'add')) . '</li>';
-		echo '<li>' . $this->Html->link(__('Export'), array('action' => 'export')) . '</li>';
+		echo '<li>' . $this->Html->link(__('Export'), array('action' => 'export', 'ext' => 'csv')) . '</li>';
+		echo '</ul>';
+	}
+
+	echo $this->Html->tag(
+		'li',
+		$this->Html->link(__('Titles'), array('controller' => 'Titles', 'action' => 'index')),
+		array(
+			'class' => ($this->name == 'Titles') ? 'active' : ''
+		)
+	);
+
+	if($this->name == 'Titles') {
+		echo '<ul class="nav nav-pills">';
+		echo '<li class="'.$addClass.'">' . $this->Html->link(__('Add'), array('action' => 'add')) . '</li>';
+//		echo '<li>' . $this->Html->link(__('Export'), array('action' => 'export', 'ext' => 'csv')) . '</li>';
 		echo '</ul>';
 	}
 ?>
 			</ul>
 		</div>
 		<div class="span9">
+			<?php echo $this->BootstrapSession->flash(); ?>
+
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	</div>

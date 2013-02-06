@@ -11,35 +11,30 @@ class EnquiriesController extends AppController {
  *	
  */
 	public function client_enquiries() {
-		if(!$this->request->is('post')) {
+		if(!$this->request->is('post') || empty($this->request->data) || empty($this->request->data['Enquiries']) || empty($this->request->data['Enquiries']['client_id'])) {
 			throw new NotFoundException(__('Invalid Search'));
 		}
 
 		$args = array(
 			'conditions' => array(
-				'client_id' => $this->request->data['Enquiries']['client_id'];
+				'client_id' => $this->request->data['Enquiries']['client_id']
 			),
-			'fields' = array(
+			'contain' => 'EnquiryType',
+			'fields' => array(
+				'client_id',
 				'created',
-				'title'
+				'id',
+				'title',
+				'EnquiryType.class',
+				'EnquiryType.disabled',
+				'EnquiryType.title'
 			),
-			'recursive' => -1
 		);
+		$this->Enquiry->Behaviors->load('Containable');
 		$Enquiries = $this->Enquiry->find('all', $args);
 
 		$this->set('Enquiries', $Enquiries);
 		$this->set('_serialize', array('Enquiries'));
-	}
-
-
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Enquiry->recursive = 0;
-		$this->set('enquiries', $this->paginate());
 	}
 
 /**

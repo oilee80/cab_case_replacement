@@ -69,12 +69,17 @@ class PagesController extends AppController {
 
 		if($page == 'home') {
 			$this->loadModel('Client');
-			$this->set('titles', $this->Client->Title->find('list'));
+			$this->set('titles', $this->Client->Title->find('list', array('conditions' => array('disabled' => false))));
 		}
 
 		$this->set(compact('page', 'subpage'));
 		$this->set('title_for_layout', $title);
 		$this->render(implode('/', $path));
+	}
+
+	public function admin_display() {
+		$args = func_get_args();
+		$this->display($args[0]);
 	}
 
 }

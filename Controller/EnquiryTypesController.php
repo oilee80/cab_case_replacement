@@ -19,25 +19,11 @@ class EnquiryTypesController extends AppController {
 	}
 
 /**
- * view method
- *
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		$this->EnquiryType->id = $id;
-		if (!$this->EnquiryType->exists()) {
-			throw new NotFoundException(__('Invalid enquiry type'));
-		}
-		$this->set('enquiryType', $this->EnquiryType->read(null, $id));
-	}
-
-/**
  * add method
  *
  * @return void
  */
-	public function add() {
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->EnquiryType->create();
 			if ($this->EnquiryType->save($this->request->data)) {
@@ -47,6 +33,7 @@ class EnquiryTypesController extends AppController {
 				$this->Session->setFlash(__('The enquiry type could not be saved. Please, try again.'));
 			}
 		}
+		$this->render('form');
 	}
 
 /**
@@ -55,7 +42,7 @@ class EnquiryTypesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		$this->EnquiryType->id = $id;
 		if (!$this->EnquiryType->exists()) {
 			throw new NotFoundException(__('Invalid enquiry type'));
@@ -70,6 +57,7 @@ class EnquiryTypesController extends AppController {
 		} else {
 			$this->request->data = $this->EnquiryType->read(null, $id);
 		}
+		$this->render('admin_form');
 	}
 
 /**
@@ -78,7 +66,7 @@ class EnquiryTypesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -86,7 +74,12 @@ class EnquiryTypesController extends AppController {
 		if (!$this->EnquiryType->exists()) {
 			throw new NotFoundException(__('Invalid enquiry type'));
 		}
-		if ($this->EnquiryType->delete()) {
+		$del = array(
+			'EnquiryType' => array(
+				'disabled' => true
+			)
+		);
+		if ($this->EnquiryType->save($del)) {
 			$this->Session->setFlash(__('Enquiry type deleted'));
 			$this->redirect(array('action' => 'index'));
 		}
